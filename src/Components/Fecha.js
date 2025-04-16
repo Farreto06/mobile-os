@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 
 const FechaActual = () => {
   // Obtener la fecha actual
@@ -22,10 +22,18 @@ const FechaActual = () => {
   const fechaFormateada = `${diaSemanaFormateado}, ${diaNumero} ${mesFormateado}`;
 
   return (
-    <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#333' }}>
+    <Text style={styles.textoHora}>
       {fechaFormateada}
     </Text>
   );
 };
+
+const styles = StyleSheet.create({
+  textoHora: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+});
 
 export default FechaActual;

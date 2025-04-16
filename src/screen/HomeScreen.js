@@ -1,24 +1,55 @@
-import { View, Text , Image, ImageBackground, StyleSheet} from 'react-native'
+import { View, Text , Image, StyleSheet, SafeAreaView} from 'react-native'
 import React from 'react'
 import Reloj from '../Components/Reloj'
+import Fecha from '../Components/Fecha'
+import AppButton from '../Components/AppButton'
+
+import Call from '../../assets/icon/call-icon.png'
+
+import icons from '../constant/icons'
 
 const icon = require('../../assets/bg-images/iphone-11.jpg')
+const youtube = 'https://www.youtube.com/'
+const tel = '`tel:${number}`'
+
 
 const HomeScreen = () => {
     return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
         <Image source={icon} style={styles.backgroundImage} resizeMode='cover'/>
-        {/* Otros componentes */}
+        
         <View style={styles.contentTop}>
             <Reloj/>
             <Fecha/>
-            <Text style={styles.text}>Hello</Text>
         </View>
-        <View style={styles.contentCenter}></View>
+
+        <View style={styles.contentCenter}>
+            <AppButton 
+                title="Telefono"
+                url={tel}
+                imageSource={icons.Call}
+            />
+            <AppButton 
+                title="YouTube"
+                url={youtube}
+                imageSource={icons.Youtube}
+            />
+            <AppButton 
+                title="WhatsApp" 
+                url="https://wa.me/1234567890" // Reemplaza con un número real
+                imageSource={icons.WhatsApp}
+            />
+            <AppButton 
+                title="Google" 
+                url="https://www.google.com" 
+                imageSource={icons.Google}
+            />
+        </View>
+
         <View style={styles.contentBottom}>
             <Text style={styles.text}>Hello of bottom</Text>
         </View>
-    </View>
+    </SafeAreaView>
     );
 }
 
@@ -41,7 +72,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         backgroundColor: 'rgba(0,0,160,0.3)', // Opcional: overlay semitransparente
-        paddingTop: 20,
+        paddingTop: 40,
     },
     contentCenter:{
         flex:0.6,

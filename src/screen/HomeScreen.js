@@ -1,22 +1,21 @@
-import { View, Text , Image, StyleSheet, SafeAreaView} from 'react-native'
+import { View, Text , Image, StyleSheet, SafeAreaView, Button, Linking} from 'react-native'
 import React from 'react'
 import Reloj from '../Components/Reloj'
 import Fecha from '../Components/Fecha'
 import AppButton from '../Components/AppButton'
 
-import Call from '../../assets/icon/call-icon.png'
+import {icons} from '../constant/icons'
 
-import icons from '../constant/icons'
-
-const icon = require('../../assets/bg-images/iphone-11.jpg')
+const backGround = require('../../assets/bg-images/iphone-11.jpg')
 const youtube = 'https://www.youtube.com/'
-const tel = '`tel:${number}`'
+const number = ''
+const tel = 'tel:'
 
 
 const HomeScreen = () => {
     return (
     <SafeAreaView style={styles.container}>
-        <Image source={icon} style={styles.backgroundImage} resizeMode='cover'/>
+        <Image source={backGround} style={styles.backgroundImage} resizeMode='cover'/>
         
         <View style={styles.contentTop}>
             <Reloj/>
@@ -71,20 +70,20 @@ const styles = StyleSheet.create({
         flex: 0.2,
         flexDirection: 'column',
         alignItems: 'center',
-        backgroundColor: 'rgba(0,0,160,0.3)', // Opcional: overlay semitransparente
+        // backgroundColor: 'rgba(0,0,160,0.3)', // Opcional: overlay semitransparente
         paddingTop: 40,
     },
     contentCenter:{
         flex:0.6,
         justifyContent: 'center',
         alignItems:'center',
-        backgroundColor: 'rgba(0,160,0,0.3)',
+        // backgroundColor: 'rgba(0,160,0,0.3)',
     },
     contentBottom:{
         flex: 0.2,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(160,0,0,0.3)', 
+        // backgroundColor: 'rgba(160,0,0,0.3)', 
     },
     Reloj:{
         marginTop:20

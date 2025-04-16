@@ -14,7 +14,7 @@ const AppButton = ({ title, url, imageSource }) => {
     return (
       <TouchableOpacity 
         style={styles.container}
-        onPress={() => openUrl(url)}
+        onPress={() => {Linking.openURL(url)}}
       >
         <Image 
           source={imageSource} 

@@ -1,52 +1,43 @@
-import { View, Text , Image, StyleSheet, SafeAreaView, Button, Linking} from 'react-native'
+import { View, Text , Image, StyleSheet, SafeAreaView, FlatList, Button} from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import Reloj from '../Components/Reloj'
 import Fecha from '../Components/Fecha'
 import AppButton from '../Components/AppButton'
 
-import {icons} from '../constant/icons'
+import buttons from '../constant/buttons'
 
 const backGround = require('../../assets/bg-images/iphone-11.jpg')
-const youtube = 'https://www.youtube.com/'
-const number = ''
-const tel = 'tel:'
-
 
 const HomeScreen = () => {
+    const natigation = useNavigation();
     return (
     <SafeAreaView style={styles.container}>
         <Image source={backGround} style={styles.backgroundImage} resizeMode='cover'/>
-        
+
         <View style={styles.contentTop}>
             <Reloj/>
             <Fecha/>
         </View>
 
-        <View style={styles.contentCenter}>
+        <FlatList 
+        data={buttons}
+        numColumns={4} // Grid de 4 columnas
+        renderItem={({ item }) => (
+            <View style={styles.gridItem}>
             <AppButton 
-                title="Telefono"
-                url={tel}
-                imageSource={icons.Call}
-            />
-            <AppButton 
-                title="YouTube"
-                url={youtube}
-                imageSource={icons.Youtube}
-            />
-            <AppButton 
-                title="WhatsApp" 
-                url="https://wa.me/1234567890" // Reemplaza con un número real
-                imageSource={icons.WhatsApp}
-            />
-            <AppButton 
-                title="Google" 
-                url="https://www.google.com" 
-                imageSource={icons.Google}
-            />
-        </View>
+                title={item.title} 
+                url={item.url} 
+                imageSource={item.imageSource} 
+                />
+            </View>
+        )}
+        keyExtractor={(item, index) => index.toString()}
+        contentContainerStyle={styles.contentCenter}/>
 
         <View style={styles.contentBottom}>
             <Text style={styles.text}>Hello of bottom</Text>
+            <Button title='Settings' onPress={()=>{natigation.navigate('SettingsScreen')}}></Button>
         </View>
     </SafeAreaView>
     );
@@ -67,20 +58,19 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     contentTop: {
-        flex: 0.2,
+        flex: 0.3,
         flexDirection: 'column',
         alignItems: 'center',
         // backgroundColor: 'rgba(0,0,160,0.3)', // Opcional: overlay semitransparente
         paddingTop: 40,
     },
     contentCenter:{
-        flex:0.6,
-        justifyContent: 'center',
-        alignItems:'center',
+        flex:1,
+        padding: 10,
         // backgroundColor: 'rgba(0,160,0,0.3)',
     },
     contentBottom:{
-        flex: 0.2,
+        flex: 0.3,
         justifyContent: 'center',
         alignItems: 'center',
         // backgroundColor: 'rgba(160,0,0,0.3)', 
@@ -92,6 +82,11 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 24,
     },
+    gridItem: {
+        width: '25%',       // Para grid 4x4
+        aspectRatio: 0.8,   // Proporción altura/ancho
+        padding: 4,
+      }
     });
 
 export default HomeScreen
